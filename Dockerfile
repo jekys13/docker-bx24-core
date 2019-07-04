@@ -21,6 +21,12 @@ COPY .settings_extra.php /home
 COPY index.php /home
 COPY dbconn.php /home
 
+RUN set -eux; \
+    addgroup -g 82 -S www-data; \
+    adduser -u 82 -D -S -G www-data www-data
+
+RUN apk add shadow && usermod -u 1000 www-data && groupmod -g 1000 www-data
+
 RUN ln -s /usr/local/bin/entrypoint.sh / # backwards compat
 RUN chmod 755 /usr/local/bin/entrypoint.sh
 
