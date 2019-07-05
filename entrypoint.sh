@@ -15,14 +15,16 @@ else
         
         echo 'Extracting bitrix core data'
         tar xvzf $PROJECT_NAME.tar.gz
-        #rm -rf $PROJECT_NAME.tar.gz
 
-        cp /home/.settings_extra.php bitrix/www/bitrix/.settings_extra.php
+        cp /home/.settings_extra.php bitrix/.settings_extra.php
 
         cat /home/dbconn.php >> bitrix/php_interface/dbconn.php
 
         echo 'Applying MySQL dump'
         mysql --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=db --database=$MYSQL_DATABASE < bitrix/dump.sql
+
+        chmod -R 755 .
+        rm -rf $PROJECT_NAME.tar.gz
         rm -rf bitrix/dump.sql
     fi
 fi
