@@ -23,7 +23,6 @@ else
         echo 'Applying MySQL dump'
         mysql --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=db --database=$MYSQL_DATABASE < bitrix/dump.sql
 
-        chmod -R 755 .
         rm -rf $PROJECT_NAME.tar.gz
         rm -rf bitrix/dump.sql
     fi
