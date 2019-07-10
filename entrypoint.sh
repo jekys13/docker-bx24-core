@@ -24,6 +24,8 @@ else
         mysql --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=db --database=$MYSQL_DATABASE < bitrix/dump.sql
 
         chmod 755 bitrix/
+        chown -R $HOST_USER:$HOST_USER bitrix/
+        
         rm -rf $PROJECT_NAME.tar.gz
         rm -rf bitrix/dump.sql
     fi
